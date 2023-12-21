@@ -18,35 +18,27 @@ class Tree {
     Node *root;
     Tree() : root(nullptr) {}
 
-    // Function to get every node on level n
     vector<int> getLevel(int level) {
         vector<int> result;
         if (this->root == nullptr || level < 0)
             return {};
-
+            
         queue<Node *> q;
         q.push(this->root);
-
         int currentLevel = 0;
 
         while(!q.empty()){
             int numOfNodes = q.size();
-
             for (int i = 0; i < numOfNodes; i++){
                 Node *currentNode = q.front();
                 q.pop();
-
                 if (currentLevel == level)
                     result.push_back(currentNode->val);
-
                 for (Node *childNode : currentNode->child)
                     q.push(childNode);
             }
-
-            // Nodes at the desired level found, stop the traversal
             if (result.size() > 0)
                 break;
-
             currentLevel++;
         }
         return result;
@@ -82,7 +74,6 @@ class Tree {
         cout << "LDS: " << *max_element(LDS.begin(), LDS.end()) << endl;
     }
 
-    // Function to print the tree at level n
     void printLevel(int n) {
         vector<int> result = getLevel(n);
         cout << "Banyak nodes: " << result.size() << endl;
@@ -91,7 +82,6 @@ class Tree {
         cout << result.at(result.size() - 1) << endl << endl;
     }
 
-    // Function to print the tree
     void printTree(Node *node, int level = 0) {
         if (node != nullptr) {
             cout << string(level * 4, ' ') << node->val << endl;
@@ -101,11 +91,10 @@ class Tree {
         }
     }
 
-
-    // Function to get the max level
     int getMaxLevel(){
         return maxLevel(this->root);
     }
+
     int maxLevel(Node* node) {
         if (node == nullptr) {
             return 0;
@@ -193,22 +182,14 @@ int main() {
     cout << "Masukan level yang ingin dicari: ";
     int level;
     cin >> level;
-
-    // Memeriksa apakah level melebihi batas
     if (level >= mytree.getMaxLevel()) {
         cout << "Level melebihi batas." << endl;
         return 0;
     }
 
-    // Print Level
     mytree.printLevel(level);
-
-    // LIS
     mytree.lis(level);
-    
-    // LDS
     mytree.lds(level);
-
     // mytree.printTree(mytree.root);
     return 0;
 }
