@@ -11,7 +11,7 @@ def printSolution(sol):
 
 def findKnightTour(start_row, start_col):
     sol = [[-1 for _ in range(N)] for _ in range(N)]
-    sol[start_row][start_col] = 0
+    sol[start_row][start_col] = 1
 
     if solveKTUtil(start_row, start_col, 1, sol, xMove, yMove, start_row, start_col):
         print("Knight's Tour found starting from position:", (start_row, start_col))
@@ -28,7 +28,7 @@ def solveKTUtil(x, y, movei, sol, xMove, yMove, start_row, start_col):
     for count, k in next_moves:
         next_x = x + xMove[k]
         next_y = y + yMove[k]
-        sol[next_x][next_y] = movei
+        sol[next_x][next_y] = movei+1
         if solveKTUtil(next_x, next_y, movei + 1, sol, xMove, yMove, start_row, start_col):
             return True
         sol[next_x][next_y] = -1
@@ -55,4 +55,4 @@ def isClosedMove(x, y, start_row, start_col):
     return abs(x - start_row) == 2 and abs(y - start_col) == 1 or abs(x - start_row) == 1 and abs(y - start_col) == 2
 
 # Example usage:
-findKnightTour(0, 4)
+findKnightTour(0, 3)
