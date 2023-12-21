@@ -49,7 +49,7 @@ bool knight_tour(int r, int c, int move){
 	return false;
 }
 
-// main code
+
 int main(){
 	
     // inisialisasi semua koordinat pada papan catur menjadi -1 (belum dijelajahi)
@@ -64,7 +64,9 @@ int main(){
         // perulangan untuk menampilkan urutan pergerakan knight pada papan catur
         for(int i = 0; i < N; i++)
         {
-            for(int j = 0; j < N; j++) cout << board[i][j] <<"  ";
+            for(int j = 0; j < N; j++) {
+                printf("%2d  ", board[i][j]);
+            }
             cout << endl;
         }
 	}
