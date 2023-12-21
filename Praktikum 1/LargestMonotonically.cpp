@@ -85,7 +85,7 @@ class Tree {
     // Function to print the tree at level n
     void printLevel(int n) {
         vector<int> result = getLevel(n);
-        cout << "Len: " << result.size() << endl;
+        cout << "Banyak nodes: " << result.size() << endl;
         for (int i = 0; i < result.size() - 1; i++)
             cout << result.at(i) << ", ";
         cout << result.at(result.size() - 1) << endl << endl;
@@ -101,6 +101,11 @@ class Tree {
         }
     }
 
+
+    // Function to get the max level
+    int getMaxLevel(){
+        return maxLevel(this->root);
+    }
     int maxLevel(Node* node) {
         if (node == nullptr) {
             return 0;
@@ -112,9 +117,7 @@ class Tree {
             return maxDepth + 1;
         }
     }
-    int getMaxLevel(){
-        return maxLevel(this->root);
-    }
+    
 };
 
 int main() {
@@ -187,7 +190,7 @@ int main() {
 
     mytree.root->child[1]->child[2]->child[0]->child.push_back(new Node(11));
 
-
+    cout << "Masukan level yang ingin dicari: ";
     int level;
     cin >> level;
 
